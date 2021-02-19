@@ -45,6 +45,7 @@ class ViewController: UIViewController {
   let messages = ["Connecting ...", "Authorizing ...", "Sending credentials ...", "Failed"]
 
   var statusPosition = CGPoint.zero
+  let info = UILabel()
 
   // MARK: view controller methods
 
@@ -52,6 +53,17 @@ class ViewController: UIViewController {
     super.viewDidLoad()
 
     //set up the UI
+    info.frame = CGRect(x: 0.0,
+                        y: loginButton.center.y + 60.0,
+                        width: view.frame.size.width,
+                        height: 30)
+    info.backgroundColor = .clear
+    info.font = UIFont(name: "HelveticaNeue", size: 12.0)
+    info.textAlignment = .center
+    info.textColor = .white
+    info.text = "Tap on a field and enter username and password"
+    view.insertSubview(info, belowSubview: loginButton)
+
     loginButton.layer.cornerRadius = 8.0
     loginButton.layer.masksToBounds = true
 
