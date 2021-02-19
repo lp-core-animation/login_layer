@@ -78,16 +78,20 @@ class ViewController: UIViewController {
 
     let flyRight = CABasicAnimation(keyPath: "position.x")
     flyRight.delegate = self
+    flyRight.setValue("form", forKey: "name")
     flyRight.fromValue = -view.bounds.size.width/2
     flyRight.toValue = view.bounds.size.width/2
     flyRight.fillMode = .both
 
-    flyRight.duration = 1.5
+    flyRight.duration = 0.5
+    flyRight.setValue(heading.layer, forKey: "layer")
     heading.layer.add(flyRight, forKey: nil)
     flyRight.beginTime = CACurrentMediaTime() + 0.3
+    flyRight.setValue(username.layer, forKey: "layer")
     username.layer.add(flyRight, forKey: nil)
     username.layer.position.x = view.bounds.size.width/2
     flyRight.beginTime = CACurrentMediaTime() + 0.4
+    flyRight.setValue(password.layer, forKey: "layer")
     password.layer.add(flyRight, forKey: nil)
     password.layer.position.x = view.bounds.size.width/2
 
@@ -245,6 +249,18 @@ class ViewController: UIViewController {
 
 extension ViewController: CAAnimationDelegate {
   func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-    print("animation did finish")
+    guard let name = anim.value(forKey: "name") as? String else {
+      return
+    }
+
+    if name == "form" {
+      let layer = anim.value(forKey: "layer") as? CALayer
+      anim.setValue(nil, forKey: "layer")
+      let pulse = CABasicAnimation(keyPath: "transform.scale")
+      pulse.fromValue = 1.25
+      pulse.toValue = 1.0
+      pulse.duration = 0.25
+      layer?.add(pulse, forKey: nil)
+    }
   }
 }
