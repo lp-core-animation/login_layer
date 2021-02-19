@@ -114,6 +114,9 @@ class ViewController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
+    username.delegate = self
+    password.delegate = self
+
     let fadeIn = CABasicAnimation(keyPath: "opacity")
     fadeIn.fromValue = 0.0
     fadeIn.toValue = 1.0
@@ -287,5 +290,14 @@ extension ViewController: CAAnimationDelegate {
       pulse.duration = 0.25
       layer?.add(pulse, forKey: nil)
     }
+  }
+}
+
+extension ViewController: UITextFieldDelegate {
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    guard let runningAnimations = info.layer.animationKeys()else {
+      return
+    }
+    info.layer.removeAnimation(forKey: "infoappear")
   }
 }
