@@ -1,25 +1,3 @@
-/*
- * Copyright (c) 2014-present Razeware LLC
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
 import UIKit
 
 // A delay function
@@ -83,12 +61,17 @@ class ViewController: UIViewController {
     let flyRight = CABasicAnimation(keyPath: "position.x")
     flyRight.fromValue = -view.bounds.size.width/2
     flyRight.toValue = view.bounds.size.width/2
-    flyRight.duration = 0.5
+    flyRight.fillMode = .both
+
+    flyRight.duration = 1.5
     heading.layer.add(flyRight, forKey: nil)
     flyRight.beginTime = CACurrentMediaTime() + 0.3
     username.layer.add(flyRight, forKey: nil)
+    username.layer.position.x = view.bounds.size.width/2
+    flyRight.beginTime = CACurrentMediaTime() + 0.4
+    password.layer.add(flyRight, forKey: nil)
+    password.layer.position.x = view.bounds.size.width/2
 
-    password.center.x -= view.bounds.width
 
     cloud1.alpha = 0.0
     cloud2.alpha = 0.0
@@ -102,13 +85,6 @@ class ViewController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
-    UIView.animate(withDuration: 0.5, delay: 0.4, usingSpringWithDamping: 0.6,
-      initialSpringVelocity: 0.0,
-      animations: {
-        self.password.center.x += self.view.bounds.width
-      },
-      completion: nil
-    )
 
     UIView.animate(withDuration: 0.5, delay: 0.5,
       animations: {
