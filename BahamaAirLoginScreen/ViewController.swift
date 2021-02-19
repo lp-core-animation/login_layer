@@ -72,12 +72,6 @@ class ViewController: UIViewController {
     password.layer.add(flyRight, forKey: nil)
     password.layer.position.x = view.bounds.size.width/2
 
-
-    cloud1.alpha = 0.0
-    cloud2.alpha = 0.0
-    cloud3.alpha = 0.0
-    cloud4.alpha = 0.0
-
     loginButton.center.y += 30.0
     loginButton.alpha = 0.0
   }
@@ -85,34 +79,22 @@ class ViewController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
+    let fadeIn = CABasicAnimation(keyPath: "opacity")
+    fadeIn.fromValue = 0.0
+    fadeIn.toValue = 1.0
+    fadeIn.duration = 0.5
+    fadeIn.fillMode = .backwards
+    fadeIn.beginTime = CACurrentMediaTime() + 0.5
+    cloud1.layer.add(fadeIn, forKey: nil)
 
-    UIView.animate(withDuration: 0.5, delay: 0.5,
-      animations: {
-        self.cloud1.alpha = 1.0
-      },
-      completion: nil
-    )
+    fadeIn.beginTime = CACurrentMediaTime() + 0.7
+    cloud2.layer.add(fadeIn, forKey: nil)
 
-    UIView.animate(withDuration: 0.5, delay: 0.7,
-      animations: {
-        self.cloud2.alpha = 1.0
-      },
-      completion: nil
-    )
+    fadeIn.beginTime = CACurrentMediaTime() + 0.9
+    cloud3.layer.add(fadeIn, forKey: nil)
 
-    UIView.animate(withDuration: 0.5, delay: 0.9,
-      animations: {
-        self.cloud3.alpha = 1.0
-      },
-      completion: nil
-    )
-
-    UIView.animate(withDuration: 0.5, delay: 1.1,
-      animations: {
-        self.cloud4.alpha = 1.0
-      },
-      completion: nil
-    )
+    fadeIn.beginTime = CACurrentMediaTime() + 1.1
+    cloud4.layer.add(fadeIn, forKey: nil)
 
     UIView.animate(withDuration: 0.5, delay: 0.5, usingSpringWithDamping: 0.5,
       initialSpringVelocity: 0.0,
