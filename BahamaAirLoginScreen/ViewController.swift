@@ -85,7 +85,8 @@ class ViewController: UIViewController {
     flyRight.toValue = view.bounds.size.width/2
     flyRight.duration = 0.5
     heading.layer.add(flyRight, forKey: nil)
-
+    flyRight.beginTime = CACurrentMediaTime() + 0.3
+    username.layer.add(flyRight, forKey: nil)
 
     password.center.x -= view.bounds.width
 
