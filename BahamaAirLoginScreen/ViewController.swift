@@ -114,6 +114,13 @@ class ViewController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
+    let flyLeft = CABasicAnimation(keyPath: "position.x")
+    flyLeft.fromValue = info.layer.position.x +
+    view.frame.size.width
+    flyLeft.toValue = info.layer.position.x
+    flyLeft.duration = 5.0
+    info.layer.add(flyLeft, forKey: "infoappear")
+
     let fadeIn = CABasicAnimation(keyPath: "opacity")
     fadeIn.fromValue = 0.0
     fadeIn.toValue = 1.0
