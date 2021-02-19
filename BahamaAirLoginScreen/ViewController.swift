@@ -77,6 +77,7 @@ class ViewController: UIViewController {
     super.viewWillAppear(animated)
 
     let flyRight = CABasicAnimation(keyPath: "position.x")
+    flyRight.delegate = self
     flyRight.fromValue = -view.bounds.size.width/2
     flyRight.toValue = view.bounds.size.width/2
     flyRight.fillMode = .both
@@ -240,4 +241,10 @@ class ViewController: UIViewController {
     return true
   }
 
+}
+
+extension ViewController: CAAnimationDelegate {
+  func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+    print("animation did finish")
+  }
 }
