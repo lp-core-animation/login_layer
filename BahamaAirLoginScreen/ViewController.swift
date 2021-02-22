@@ -134,6 +134,7 @@ class ViewController: UIViewController {
     cloud4.layer.add(fadeIn, forKey: nil)
 
     let groupAnimation = CAAnimationGroup()
+    groupAnimation.timingFunction = CAMediaTimingFunction(name: .easeIn)
     groupAnimation.beginTime = CACurrentMediaTime() + 0.5
     groupAnimation.duration = 0.5
     groupAnimation.fillMode = .backwards
