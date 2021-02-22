@@ -156,7 +156,8 @@ class ViewController: UIViewController {
     animateCloud(cloud4)
 
     let flyLeft = CABasicAnimation(keyPath: "position.x")
-    flyLeft.repeatCount = 4
+    flyLeft.repeatCount = 2.5
+    flyLeft.speed = 1.2
     flyLeft.autoreverses = true
     flyLeft.fromValue = info.layer.position.x +
     view.frame.size.width
@@ -304,7 +305,7 @@ extension ViewController: CAAnimationDelegate {
 
 extension ViewController: UITextFieldDelegate {
   func textFieldDidBeginEditing(_ textField: UITextField) {
-    guard let runningAnimations = info.layer.animationKeys()else {
+    guard let _ = info.layer.animationKeys()else {
       return
     }
     info.layer.removeAnimation(forKey: "infoappear")
