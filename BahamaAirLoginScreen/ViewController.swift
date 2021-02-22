@@ -156,6 +156,8 @@ class ViewController: UIViewController {
     animateCloud(cloud4)
 
     let flyLeft = CABasicAnimation(keyPath: "position.x")
+    flyLeft.repeatCount = 4
+    flyLeft.autoreverses = true
     flyLeft.fromValue = info.layer.position.x +
     view.frame.size.width
     flyLeft.toValue = info.layer.position.x
