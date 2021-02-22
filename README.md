@@ -2,3 +2,4 @@
 
 * basic layer animations
 * CA Animation delegate
+* Animation groups
