@@ -323,6 +323,18 @@ extension ViewController: UITextFieldDelegate {
       jump.fromValue = textField.layer.position.y + 1.0
       jump.toValue = textField.layer.position.y
       jump.duration = jump.settlingDuration
+      textField.layer.borderWidth = 3.0
+      textField.layer.borderColor = UIColor.clear.cgColor
+      textField.layer.cornerRadius = 5
       textField.layer.add(jump, forKey: nil)
+
+      let flash = CASpringAnimation(keyPath: "borderColor")
+      flash.damping = 2.0
+      flash.stiffness = 200.0
+      flash.fromValue = UIColor(red: 1.0, green: 0.27, blue: 0.0,
+      alpha: 1.0).cgColor
+      flash.toValue = UIColor.white.cgColor
+      flash.duration = flash.settlingDuration
+      textField.layer.add(flash, forKey: nil)
   } }
 }
