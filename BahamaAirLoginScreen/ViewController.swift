@@ -294,10 +294,11 @@ extension ViewController: CAAnimationDelegate {
     if name == "form" {
       let layer = anim.value(forKey: "layer") as? CALayer
       anim.setValue(nil, forKey: "layer")
-      let pulse = CABasicAnimation(keyPath: "transform.scale")
+      let pulse = CASpringAnimation(keyPath: "transform.scale")
+      pulse.damping = 7.5
       pulse.fromValue = 1.25
       pulse.toValue = 1.0
-      pulse.duration = 0.25
+      pulse.duration = pulse.settlingDuration
       layer?.add(pulse, forKey: nil)
     }
   }
@@ -310,4 +311,18 @@ extension ViewController: UITextFieldDelegate {
     }
     info.layer.removeAnimation(forKey: "infoappear")
   }
+
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    guard let text = textField.text else { return }
+    if text.count < 5 {
+      let jump = CASpringAnimation(keyPath: "position.y")
+      jump.initialVelocity = 100.0
+      jump.mass = 10.0
+      jump.stiffness = 1500.0
+      jump.damping = 50.0
+      jump.fromValue = textField.layer.position.y + 1.0
+      jump.toValue = textField.layer.position.y
+      jump.duration = jump.settlingDuration
+      textField.layer.add(jump, forKey: nil)
+  } }
 }
